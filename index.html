@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)file:///Users/matiasfrancois/Downloads/index_8.html -->
+<!-- saved from url=(0051)file:///Users/matiasfrancois/Downloads/index_9.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,8 +71,8 @@
   .pill.load{border-color:var(--amber-dim);color:var(--amber);}
   .pill.timer{cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;}
   .pill.timer:hover{border-color:var(--amber);}
-  .pill.timer.running{background:var(--amber);border-color:var(--amber);color:#1a1408;font-weight:700;font-variant-numeric:tabular-nums;}
-  .pill.timer.done{background:var(--green);border-color:var(--green);color:#0f1a10;font-weight:700;}
+  .pill.timer.running{background:var(--amber);border-color:var(--amber);color:#1a1408;font-weight:700;font-variant-numeric:tabular-nums;display:flex;justify-content:center;flex-basis:100%;width:100%;font-size:38px;padding:16px 10px;letter-spacing:0.02em;border-radius:8px;margin-top:2px;}
+  .pill.timer.done{background:var(--green);border-color:var(--green);color:#0f1a10;font-weight:700;display:flex;justify-content:center;flex-basis:100%;width:100%;font-size:22px;padding:12px 10px;border-radius:8px;margin-top:2px;}
 
   .regrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
   .reg{display:flex;flex-direction:column;gap:3px;}
@@ -1940,17 +1940,18 @@ const activeTimers = {}; // id -> {intervalId, endsAt}
 function beep(){
   try{
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    [0, 0.18, 0.36].forEach(delay=>{
+    const pulses = [0, 0.35, 0.7, 1.05, 1.4, 1.75];
+    pulses.forEach((delay, i)=>{
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.value = 880;
+      osc.type = 'square';
+      osc.frequency.value = i % 2 === 0 ? 920 : 1160;
       gain.gain.setValueAtTime(0.0001, ctx.currentTime + delay);
-      gain.gain.exponentialRampToValueAtTime(0.35, ctx.currentTime + delay + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + delay + 0.16);
+      gain.gain.exponentialRampToValueAtTime(0.9, ctx.currentTime + delay + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + delay + 0.3);
       osc.connect(gain).connect(ctx.destination);
       osc.start(ctx.currentTime + delay);
-      osc.stop(ctx.currentTime + delay + 0.18);
+      osc.stop(ctx.currentTime + delay + 0.32);
     });
   }catch(e){ /* audio not available, ignore */ }
 }
@@ -1986,11 +1987,11 @@ function toggleTimer(id, seconds){
       btn.classList.add('done');
       btn.innerHTML = '✓ Listo';
       beep();
-      if(navigator.vibrate) navigator.vibrate([200,100,200]);
+      if(navigator.vibrate) navigator.vibrate([250,120,250,120,250,120,250]);
       setTimeout(()=>{
         btn.classList.remove('done');
         btn.innerHTML = `⏱ Descanso <b>${seconds}s</b>`;
-      }, 4000);
+      }, 5000);
       return;
     }
     btn.innerHTML = formatTime(remaining);
