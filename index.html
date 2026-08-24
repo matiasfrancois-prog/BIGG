@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)file:///Users/matiasfrancois/Downloads/index_1.html -->
+<!-- saved from url=(0051)file:///Users/matiasfrancois/Downloads/index_3.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -129,9 +129,11 @@
     <h1>Registro de entrenamiento</h1>
     <p>Cargá el peso de cada serie. Se guarda solo en este dispositivo — al final de cada día podés copiarlo para pegarlo directo en el Sheet.</p>
     <a class="drivelink" href="https://docs.google.com/spreadsheets/d/1dohpA9uUK667Pfu8jqYLxTat1WPMFrbF-TbUV7l0O64/edit" target="_blank" rel="noopener">Ver planilla original en Drive ↗</a>
+    <div id="buildmarker" style="margin-top:8px;font-size:10px;color:var(--ink-dim);">Versión 2026-08-24-v3 — si ves este texto, el script arrancó bien.</div>
   </div>
 
   <div class="tabs" id="tabs"><div class="tab active" data-day="Lunes">Lun</div><div class="tab" data-day="Martes">Mar</div><div class="tab" data-day="Miercoles">Mie</div><div class="tab" data-day="Jueves">Jue</div><div class="tab" data-day="Viernes">Vie</div><div class="tab" data-day="__resumen__">Resumen</div></div>
+  <div id="errbanner" style="display:none;background:#4a1f1f;border:1px solid #c1503a;color:#ffcfc4;font-size:12px;padding:12px 14px;border-radius:5px;margin-bottom:14px;line-height:1.5;"></div>
   <div id="panels"><div class="panel active" data-day="Lunes">
     <div class="daytitle"><h2>Lunes — Pecho, Tríceps y Peso Muerto</h2><span class="duration">61.1 min</span></div>
     <p class="daysub">Cadena posterior: peso muerto convencional + hip thrust liviano de bombeo.</p>
@@ -1724,6 +1726,14 @@
 </div>
 
 <script>
+window.addEventListener('error', function(e){
+  var b = document.getElementById('errbanner');
+  if(!b) return;
+  b.style.display = 'block';
+  b.innerHTML = '<b>Se rompió algo en la página.</b> Mandale captura de esto a Claude:<br><br>' +
+    (e.message||'error desconocido') + '<br>Línea: ' + (e.lineno||'?') + ', columna: ' + (e.colno||'?');
+});
+
 const DAYS = [
   {
     key:"Lunes", title:"Lunes — Pecho, Tríceps y Peso Muerto", sub:"Cadena posterior: peso muerto convencional + hip thrust liviano de bombeo.", total:61.1,
@@ -2179,6 +2189,8 @@ function renderResumen(){
 }
 
 async function init(){
+  const marker = document.getElementById('buildmarker');
+  if(marker) marker.textContent = 'Versión 2026-08-24-v3 — si ves este texto, el script arrancó bien.';
   buildTabs();
   DAYS.forEach(renderDayPanel);
   renderResumen();
