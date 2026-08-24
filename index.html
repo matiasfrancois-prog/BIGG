@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)file:///Users/matiasfrancois/Downloads/index_3.html -->
+<!-- saved from url=(0051)file:///Users/matiasfrancois/Downloads/index_4.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1726,6 +1726,13 @@
 </div>
 
 <script>
+if(window.__RUTINA_YA_CARGADA__){
+  // El script se está ejecutando más de una vez en esta página (contenido duplicado
+  // en el archivo). Nos detenemos acá para no duplicar pestañas ni tarjetas.
+  console.warn('Rutina: script ya estaba cargado, se ignora esta segunda ejecución.');
+} else {
+window.__RUTINA_YA_CARGADA__ = true;
+
 window.addEventListener('error', function(e){
   var b = document.getElementById('errbanner');
   if(!b) return;
@@ -2200,6 +2207,7 @@ async function init(){
   renderChart(DAYS[0].key);
 }
 init();
+} // cierre del guard de doble-carga
 </script>
 
 
