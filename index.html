@@ -64,6 +64,10 @@
   .pill{background:var(--panel-2);border:1px solid var(--line);border-radius:20px;padding:3px 9px;font-size:11px;color:var(--ink-dim);}
   .pill b{color:var(--ink);font-weight:600;}
   .pill.load{border-color:var(--amber-dim);color:var(--amber);}
+  .pill.timer{cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;}
+  .pill.timer:hover{border-color:var(--amber);}
+  .pill.timer.running{background:var(--amber);border-color:var(--amber);color:#1a1408;font-weight:700;font-variant-numeric:tabular-nums;}
+  .pill.timer.done{background:var(--green);border-color:var(--green);color:#0f1a10;font-weight:700;}
 
   .regrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
   .reg{display:flex;flex-direction:column;gap:3px;}
@@ -314,6 +318,70 @@ const ICONS = {
   band: `<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="12"/><path d="M20 12 C10 16, 30 22, 12 26 C4 28, 30 30, 20 34"/><line x1="20" y1="34" x2="20" y2="38"/></svg>`
 };
 
+const activeTimers = {}; // id -> {intervalId, endsAt}
+
+function beep(){
+  try{
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [0, 0.18, 0.36].forEach(delay=>{
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.0001, ctx.currentTime + delay);
+      gain.gain.exponentialRampToValueAtTime(0.35, ctx.currentTime + delay + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + delay + 0.16);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(ctx.currentTime + delay);
+      osc.stop(ctx.currentTime + delay + 0.18);
+    });
+  }catch(e){ /* audio not available, ignore */ }
+}
+
+function formatTime(s){
+  const m = Math.floor(s/60), sec = s%60;
+  return m > 0 ? `${m}:${String(sec).padStart(2,'0')}` : `${sec}s`;
+}
+
+function toggleTimer(id, seconds){
+  const btn = document.getElementById(`timer-${id}`);
+  if(!btn) return;
+
+  if(activeTimers[id]){
+    clearInterval(activeTimers[id].intervalId);
+    delete activeTimers[id];
+    btn.classList.remove('running','done');
+    btn.innerHTML = `⏱ Descanso <b>${seconds}s</b>`;
+    return;
+  }
+
+  let remaining = seconds;
+  btn.classList.remove('done');
+  btn.classList.add('running');
+  btn.innerHTML = formatTime(remaining);
+
+  const intervalId = setInterval(()=>{
+    remaining--;
+    if(remaining <= 0){
+      clearInterval(intervalId);
+      delete activeTimers[id];
+      btn.classList.remove('running');
+      btn.classList.add('done');
+      btn.innerHTML = '✓ Listo';
+      beep();
+      if(navigator.vibrate) navigator.vibrate([200,100,200]);
+      setTimeout(()=>{
+        btn.classList.remove('done');
+        btn.innerHTML = `⏱ Descanso <b>${seconds}s</b>`;
+      }, 4000);
+      return;
+    }
+    btn.innerHTML = formatTime(remaining);
+  }, 1000);
+
+  activeTimers[id] = {intervalId};
+}
+
 let store = {}; // in-memory mirror of window.storage, key: `reg:{day}:{rowIndex}` -> [s1,s2,s3,s4]
 
 function parseFirstNumber(str){
@@ -441,7 +509,9 @@ function renderDayPanel(day){
         </div>
         <div class="meta">
           <span class="pill"><b>${row.series}</b> x <b>${row.reps}</b></span>
-          <span class="pill">Descanso <b>${row.descanso}s</b></span>
+          ${/^\d+$/.test(String(row.descanso)) ?
+            `<button class="pill timer" id="timer-${day.key}-${idx}" onclick="toggleTimer('${day.key}-${idx}', ${row.descanso})">⏱ Descanso <b>${row.descanso}s</b></button>`
+            : `<span class="pill">Descanso <b>${row.descanso}s</b></span>`}
           ${row.carga ? `<span class="pill load">${row.carga}</span>` : ``}
           ${row.rir ? `<span class="pill">RIR <b>${row.rir}</b></span>` : ``}
         </div>
