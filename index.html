@@ -1,0 +1,2089 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)file:///Users/matiasfrancois/Downloads/rutina-tren-superior_2.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro de Entrenamiento — Mesociclo Hipertrofia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+  :root{
+    --bg: #19191b;
+    --panel: #232326;
+    --panel-2: #2a2a2e;
+    --line: #38383d;
+    --ink: #f0eee6;
+    --ink-dim: #9a9a9e;
+    --amber: #e6a635;
+    --amber-dim: #6b5427;
+    --red: #c1503a;
+    --green: #7a9e6e;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.disp{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.02em;}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 14px 60px;}
+
+  /* header */
+  .top{padding:6px 2px 18px;border-bottom:1px solid var(--line);margin-bottom:16px;}
+  .eyebrow{color:var(--amber);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;}
+  .top h1{font-size:26px;font-weight:700;margin:0 0 4px;color:var(--ink);}
+  .top p{margin:0;color:var(--ink-dim);font-size:13px;}
+
+  /* tabs */
+  .tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:18px;scrollbar-width:none;}
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{flex:0 0 auto;padding:9px 15px;border-radius:3px;background:var(--panel);border:1px solid var(--line);color:var(--ink-dim);font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;transition:all .15s;}
+  .tab:hover{color:var(--ink);border-color:#4a4a50;}
+  .tab.active{background:var(--amber);border-color:var(--amber);color:#1a1408;}
+
+  .panel{display:none;}
+  .panel.active{display:block;}
+
+  .daytitle{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:4px;flex-wrap:wrap;gap:6px;}
+  .daytitle h2{font-size:19px;margin:0;color:var(--ink);}
+  .duration{color:var(--amber);font-size:12px;font-weight:600;letter-spacing:0.05em;}
+  .daysub{color:var(--ink-dim);font-size:12px;margin:0 0 18px;}
+
+  /* superset bracket group */
+  .group{position:relative;margin-bottom:10px;}
+  .group.super{padding-left:10px;border-left:2px solid var(--amber-dim);}
+  .super-tag{color:var(--amber);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 6px 2px;}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:12px 13px;margin-bottom:8px;}
+  .card.rest{background:transparent;border:1px dashed var(--line);color:var(--ink-dim);font-size:12px;padding:8px 13px;text-align:center;}
+  .card-head{display:flex;align-items:flex-start;gap:9px;margin-bottom:9px;}
+  .blk{flex:0 0 auto;width:26px;height:26px;border-radius:3px;background:var(--panel-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;color:var(--amber);}
+  .ex-name{font-size:14.5px;font-weight:600;line-height:1.3;flex:1;}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;}
+  .pill{background:var(--panel-2);border:1px solid var(--line);border-radius:20px;padding:3px 9px;font-size:11px;color:var(--ink-dim);}
+  .pill b{color:var(--ink);font-weight:600;}
+  .pill.load{border-color:var(--amber-dim);color:var(--amber);}
+
+  .regrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+  .reg{display:flex;flex-direction:column;gap:3px;}
+  .reg label{font-size:9.5px;color:var(--ink-dim);letter-spacing:0.06em;text-align:center;}
+  .reg input{width:100%;background:#151517;border:1px solid var(--amber-dim);border-radius:4px;color:var(--amber);font-family:'Inter',sans-serif;font-weight:600;font-size:13px;text-align:center;padding:7px 2px;outline:none;transition:border-color .15s,background .15s;}
+  .reg input:focus{border-color:var(--amber);background:#1c1710;}
+  .reg input.saved{border-color:var(--green);}
+
+  .block-note{font-size:11px;color:var(--ink-dim);margin:0 0 10px;line-height:1.4;}
+  .reftable{width:100%;border-collapse:collapse;font-size:11.5px;}
+  .reftable th{text-align:left;color:var(--ink-dim);font-weight:600;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;padding:0 6px 6px 0;border-bottom:1px solid var(--line);}
+  .reftable td{padding:6px 6px 6px 0;border-bottom:1px solid #2c2c30;color:var(--ink);}
+  .reftable tr:last-child td{border-bottom:none;}
+  .reftable td:first-child{color:var(--amber);font-weight:600;width:22px;}
+
+  /* chart */
+  .chartbox{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:14px 14px 6px;margin:20px 0 14px;}
+  .chartbox h3{font-size:12px;margin:0 0 12px;color:var(--ink-dim);letter-spacing:0.08em;}
+  .bar-row{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+  .bar-label{width:110px;flex:0 0 auto;font-size:10.5px;color:var(--ink-dim);text-align:right;line-height:1.2;}
+  .bar-track{flex:1;position:relative;height:16px;background:#151517;border-radius:3px;overflow:hidden;}
+  .bar-fill{position:absolute;left:0;top:0;bottom:0;border-radius:3px;}
+  .bar-fill.sug{background:#4a4a50;}
+  .bar-fill.act{background:var(--amber);}
+  .bar-val{width:38px;flex:0 0 auto;font-size:10.5px;color:var(--ink-dim);}
+  .legend{display:flex;gap:14px;font-size:10.5px;color:var(--ink-dim);margin-bottom:10px;}
+  .legend span{display:inline-flex;align-items:center;gap:5px;}
+  .dot{width:8px;height:8px;border-radius:2px;display:inline-block;}
+
+  /* export */
+  .export{background:var(--panel);border:1px solid var(--amber-dim);border-radius:5px;padding:13px 14px;margin-top:6px;}
+  .export h3{font-size:12px;margin:0 0 6px;color:var(--amber);letter-spacing:0.05em;}
+  .export p{font-size:11.5px;color:var(--ink-dim);margin:0 0 10px;line-height:1.5;}
+  .export button{background:var(--amber);color:#1a1408;border:none;border-radius:4px;padding:9px 16px;font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;}
+  .export button:hover{background:#f0b64f;}
+  .export .ok{color:var(--green);font-size:11.5px;margin-left:10px;}
+
+  /* resumen tab */
+  .sum-bar{display:flex;align-items:center;gap:10px;margin-bottom:11px;}
+  .sum-day{width:70px;font-size:11.5px;color:var(--ink-dim);font-weight:600;}
+  .sum-track{flex:1;height:20px;background:#151517;border-radius:3px;overflow:hidden;position:relative;}
+  .sum-fill{height:100%;background:linear-gradient(90deg,#8a6a2c,var(--amber));border-radius:3px;}
+  .sum-min{width:52px;font-size:11px;color:var(--ink-dim);text-align:right;}
+  .freqgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;}
+  .freqcard{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:11px 12px;}
+  .freqcard .g{font-family:'Oswald',sans-serif;font-size:13px;color:var(--amber);margin-bottom:3px;}
+  .freqcard .d{font-size:11px;color:var(--ink-dim);}
+
+  @media (max-width:420px){
+    .regrow{gap:5px;}
+    .reg input{padding:6px 1px;font-size:12px;}
+    .bar-label{width:82px;font-size:9.5px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="eyebrow">Mesociclo · Hipertrofia · Tren superior · Frecuencia 2</div>
+    <h1>Registro de entrenamiento</h1>
+    <p>Cargá el peso de cada serie. Se guarda solo en este dispositivo — al final de cada día podés copiarlo para pegarlo directo en el Sheet.</p>
+  </div>
+
+  <div class="tabs" id="tabs"><div class="tab active" data-day="Lunes">Lun</div><div class="tab" data-day="Martes">Mar</div><div class="tab" data-day="Miercoles">Mie</div><div class="tab" data-day="Jueves">Jue</div><div class="tab" data-day="Viernes">Vie</div><div class="tab" data-day="__resumen__">Resumen</div></div>
+  <div id="panels"><div class="panel active" data-day="Lunes">
+    <div class="daytitle"><h2>Lunes — Pecho, Tríceps y Peso Muerto</h2><span class="duration">61.1 min</span></div>
+    <p class="daysub">Cadena posterior: peso muerto convencional + hip thrust liviano de bombeo.</p>
+  
+      <div class="card block-ref">
+        <div class="card-head">
+          <div class="blk">ACT</div>
+          <div class="ex-name">Activación de tren inferior con banda</div>
+        </div>
+        <p class="block-note">De la hoja "Banda LyM T. inf" — sin columnas de Registro en el Sheet, se muestra como referencia (no cuenta para la duración total ni para el export).</p>
+        <table class="reftable">
+          <thead><tr><th>#</th><th>Ejercicio</th><th>Trabajo</th><th>Carga</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Side step</td><td>3x10</td><td>Banda rosa</td></tr><tr><td>2</td><td>Side step</td><td>3x10</td><td>Banda larga negra</td></tr><tr><td>3</td><td>Patada en extensión lateral</td><td>3x10</td><td>Banda rosa</td></tr><tr><td>4</td><td>Patada en extensión posterior</td><td>3x10</td><td>Banda rosa</td></tr><tr><td>5</td><td>Patada con rodilla en extensión frontal</td><td>3x10</td><td>Banda rosa</td></tr>
+          </tbody>
+        </table>
+      </div>
+    <div class="card rest">CAL — Calentamiento: movilidad hombro/cadera + 2 series de aproximación en press plano · Barra vacía y 50%</div>
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">A1</div>
+          <div class="ex-name">Press plano con barra</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>6-8</b></span>
+          <span class="pill">Descanso <b>150s</b></span>
+          <span class="pill load">60 - 62,5</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Lunes" data-row="1">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">A2</div>
+          <div class="ex-name">Peso muerto convencional</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>5</b></span>
+          <span class="pill">Descanso <b>150s</b></span>
+          
+          
+        </div>
+        <div class="regrow" data-day="Lunes" data-row="2">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    <div class="group super"><div class="super-tag">Superserie — sin descanso entre ejercicios</div>
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">B1</div>
+          <div class="ex-name">Press inclinado con mancuernas</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>8-10</b></span>
+          <span class="pill">Descanso <b>90s</b></span>
+          <span class="pill load">22,5 - 25 c/mano</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Lunes" data-row="3">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">B2</div>
+          <div class="ex-name">Aperturas fase concéntrica con banda elástica de pie</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>15</b></span>
+          <span class="pill">Descanso <b>-s</b></span>
+          <span class="pill load">Banda violeta</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Lunes" data-row="4">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">C</div>
+          <div class="ex-name">Hip thrust con barra (espalda alta en banco inclinado)</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>12</b></span>
+          <span class="pill">Descanso <b>60s</b></span>
+          
+          
+        </div>
+        <div class="regrow" data-day="Lunes" data-row="5">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">D</div>
+          <div class="ex-name">Fondos en paralelas con lastre (énfasis tríceps, torso vertical)</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>8-10</b></span>
+          <span class="pill">Descanso <b>90s</b></span>
+          <span class="pill load">Lastre +5 a +10</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Lunes" data-row="6">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">E</div>
+          <div class="ex-name">Press francés sentado con barra</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>10</b></span>
+          <span class="pill">Descanso <b>75s</b></span>
+          <span class="pill load">25</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Lunes" data-row="7">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">F</div>
+          <div class="ex-name">Pinch press inclinado con disco</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>2</b> x <b>15</b></span>
+          <span class="pill">Descanso <b>45s</b></span>
+          <span class="pill load">20 - 30</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Lunes" data-row="8">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+        <div class="card block-ref">
+          <div class="card-head">
+            <div class="blk">CORE</div>
+            <div class="ex-name">Bloque de core — 7 minutos exactos, al final de la sesión</div>
+          </div>
+          <p class="block-note">EMOM 7' — 1 ejercicio por minuto, ~40s de trabajo, descansás lo que sobra del minuto.</p>
+          <table class="reftable">
+            <thead><tr><th>#</th><th>Ejercicio</th><th>Trabajo</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Pallof press con banda de pie — lado derecho</td><td>40 s</td></tr><tr><td>2</td><td>Pallof press con banda de pie — lado izquierdo</td><td>40 s</td></tr><tr><td>3</td><td>Plancha frontal con toque de hombro</td><td>40 s</td></tr><tr><td>4</td><td>V-ups alternados</td><td>40 s</td></tr><tr><td>5</td><td>Abdominales bici</td><td>40 s</td></tr><tr><td>6</td><td>Hollow hold</td><td>40 s</td></tr><tr><td>7</td><td>Dead bug con mancuerna</td><td>40 s</td></tr>
+            </tbody>
+          </table>
+        </div>
+      <div class="card rest">Duración total estimada de la sesión: <b style="color:var(--ink)">61.1 min</b></div>
+    <div class="chartbox">
+      <h3>Carga sugerida vs. registrada</h3>
+      <div class="legend">
+        <span><i class="dot" style="background:#4a4a50"></i>Sugerida</span>
+        <span><i class="dot" style="background:var(--amber)"></i>Registrada (prom.)</span>
+      </div>
+      <div id="chart-Lunes"><div>
+      <div class="bar-row">
+        <div class="bar-label">Press plano con barra</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
+          <div class="bar-track"><div class="bar-fill sug" style="width:100%"></div></div>
+          <div class="bar-track"><div class="bar-fill act" style="width:0%"></div></div>
+        </div>
+        <div class="bar-val">60.0kg</div>
+      </div>
+    </div><div>
+      <div class="bar-row">
+        <div class="bar-label">Press inclinado con manc…</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
+          <div class="bar-track"><div class="bar-fill sug" style="width:37.5%"></div></div>
+          <div class="bar-track"><div class="bar-fill act" style="width:0%"></div></div>
+        </div>
+        <div class="bar-val">22.5kg</div>
+      </div>
+    </div><div>
+      <div class="bar-row">
+        <div class="bar-label">Fondos en paralelas con …</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
+          <div class="bar-track"><div class="bar-fill sug" style="width:8.333333333333332%"></div></div>
+          <div class="bar-track"><div class="bar-fill act" style="width:0%"></div></div>
+        </div>
+        <div class="bar-val">5.0kg</div>
+      </div>
+    </div><div>
+      <div class="bar-row">
+        <div class="bar-label">Press francés sentado co…</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
+          <div class="bar-track"><div class="bar-fill sug" style="width:41.66666666666667%"></div></div>
+          <div class="bar-track"><div class="bar-fill act" style="width:0%"></div></div>
+        </div>
+        <div class="bar-val">25.0kg</div>
+      </div>
+    </div><div>
+      <div class="bar-row">
+        <div class="bar-label">Pinch press inclinado co…</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
+          <div class="bar-track"><div class="bar-fill sug" style="width:33.33333333333333%"></div></div>
+          <div class="bar-track"><div class="bar-fill act" style="width:0%"></div></div>
+        </div>
+        <div class="bar-val">20.0kg</div>
+      </div>
+    </div></div>
+    </div>
+
+    <div class="export">
+      <h3>Copiar para pegar en Google Sheets</h3>
+      <p>Copia las 4 columnas de "Registro" en el mismo orden de filas que la hoja "Lunes". Seleccioná la celda <b>J5</b> de esa hoja y pegá (Ctrl+V / Cmd+V).</p>
+      <button onclick="copyDay(&#39;Lunes&#39;, this)">Copiar registro de Lunes</button>
+    </div>
+  </div><div class="panel" data-day="Martes">
+    <div class="daytitle"><h2>Martes — Espalda y Bíceps</h2><span class="duration">62.4 min</span></div>
+    <p class="daysub">Frecuencia 2 de espalda (con jueves).</p>
+  <div class="card rest">CAL — Calentamiento: banda para hombro/escápula + 2 series de aproximación en dominadas y remo · Peso corporal y 50%</div>
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">A</div>
+          <div class="ex-name">Dominadas estrictas con lastre</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>5-6</b></span>
+          <span class="pill">Descanso <b>150s</b></span>
+          <span class="pill load">Lastre +5 (subir si salen 6 limpias)</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Martes" data-row="1">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    <div class="group super"><div class="super-tag">Superserie — sin descanso entre ejercicios</div>
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">B1</div>
+          <div class="ex-name">Remo con barra, agarre supino, codos pegados</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>8-10</b></span>
+          <span class="pill">Descanso <b>90s</b></span>
+          <span class="pill load">30 - 32,5</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Martes" data-row="2">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">B2</div>
+          <div class="ex-name">Pull-over / tirón con banda elástica de pie</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>15</b></span>
+          <span class="pill">Descanso <b>-s</b></span>
+          <span class="pill load">Banda violeta</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Martes" data-row="3">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">C</div>
+          <div class="ex-name">Remo unilateral a 3 apoyos con mancuerna</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>10 por lado</b></span>
+          <span class="pill">Descanso <b>75s</b></span>
+          <span class="pill load">25 - 27,5</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Martes" data-row="4">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">D</div>
+          <div class="ex-name">Remo a 45° con pecho apoyado en banco inclinado</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>12</b></span>
+          <span class="pill">Descanso <b>75s</b></span>
+          <span class="pill load">22,5</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Martes" data-row="5">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">E</div>
+          <div class="ex-name">Curl de bíceps con barra + hold isométrico 15s en la última rep</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>10</b></span>
+          <span class="pill">Descanso <b>75s</b></span>
+          <span class="pill load">15 - 17,5</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Martes" data-row="6">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">F</div>
+          <div class="ex-name">Curl alternado con mancuernas (supinación completa)</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>12</b></span>
+          <span class="pill">Descanso <b>60s</b></span>
+          <span class="pill load">15</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Martes" data-row="7">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">G</div>
+          <div class="ex-name">Face pull con banda elástica de pie</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>2</b> x <b>20</b></span>
+          <span class="pill">Descanso <b>45s</b></span>
+          <span class="pill load">Banda violeta</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Martes" data-row="8">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+        <div class="card block-ref">
+          <div class="card-head">
+            <div class="blk">CORE</div>
+            <div class="ex-name">Bloque de core — 7 minutos exactos, al final de la sesión</div>
+          </div>
+          <p class="block-note">Circuito 2 vueltas — 5 ejercicios x 30s trabajo / 12s transición (3'30'' por vuelta).</p>
+          <table class="reftable">
+            <thead><tr><th>#</th><th>Ejercicio</th><th>Trabajo</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Pallof press de pie con paso lateral — derecha</td><td>30 s</td></tr><tr><td>2</td><td>Pallof press de pie con paso lateral — izquierda</td><td>30 s</td></tr><tr><td>3</td><td>Plancha</td><td>30 s</td></tr><tr><td>4</td><td>Shoulder taps</td><td>30 s</td></tr><tr><td>5</td><td>Crunch</td><td>30 s</td></tr>
+            </tbody>
+          </table>
+        </div>
+      <div class="card rest">Duración total estimada de la sesión: <b style="color:var(--ink)">62.4 min</b></div>
+    <div class="chartbox">
+      <h3>Carga sugerida vs. registrada</h3>
+      <div class="legend">
+        <span><i class="dot" style="background:#4a4a50"></i>Sugerida</span>
+        <span><i class="dot" style="background:var(--amber)"></i>Registrada (prom.)</span>
+      </div>
+      <div id="chart-Martes"></div>
+    </div>
+
+    <div class="export">
+      <h3>Copiar para pegar en Google Sheets</h3>
+      <p>Copia las 4 columnas de "Registro" en el mismo orden de filas que la hoja "Martes". Seleccioná la celda <b>J5</b> de esa hoja y pegá (Ctrl+V / Cmd+V).</p>
+      <button onclick="copyDay(&#39;Martes&#39;, this)">Copiar registro de Martes</button>
+    </div>
+  </div><div class="panel" data-day="Miercoles">
+    <div class="daytitle"><h2>Miércoles — Hombros y Hip Thrust</h2><span class="duration">60 min</span></div>
+    <p class="daysub">Hip thrust pesado + peso muerto rumano (RIR 3, sin acumular fatiga lumbar antes del jueves).</p>
+  
+      <div class="card block-ref">
+        <div class="card-head">
+          <div class="blk">ACT</div>
+          <div class="ex-name">Activación de tren inferior con banda</div>
+        </div>
+        <p class="block-note">De la hoja "Banda LyM T. inf" — sin columnas de Registro en el Sheet, se muestra como referencia (no cuenta para la duración total ni para el export).</p>
+        <table class="reftable">
+          <thead><tr><th>#</th><th>Ejercicio</th><th>Trabajo</th><th>Carga</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Side step</td><td>3x10</td><td>Banda rosa</td></tr><tr><td>2</td><td>Side step</td><td>3x10</td><td>Banda larga negra</td></tr><tr><td>3</td><td>Patada en extensión lateral</td><td>3x10</td><td>Banda rosa</td></tr><tr><td>4</td><td>Patada en extensión posterior</td><td>3x10</td><td>Banda rosa</td></tr><tr><td>5</td><td>Patada con rodilla en extensión frontal</td><td>3x10</td><td>Banda rosa</td></tr>
+          </tbody>
+        </table>
+      </div>
+    <div class="card rest">CAL — Calentamiento: movilidad torácica/hombro + 2 series de aproximación en press militar y hip thrust · Barra vacía y 50%</div>
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">A</div>
+          <div class="ex-name">Press militar de pie con barra</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>6-8</b></span>
+          <span class="pill">Descanso <b>150s</b></span>
+          <span class="pill load">22,5 - 25</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Miercoles" data-row="1">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">B</div>
+          <div class="ex-name">Hip thrust con barra (serie pesada)</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>8-10</b></span>
+          <span class="pill">Descanso <b>120s</b></span>
+          
+          
+        </div>
+        <div class="regrow" data-day="Miercoles" data-row="2">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">C</div>
+          <div class="ex-name">Peso muerto rumano con barra</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>10</b></span>
+          <span class="pill">Descanso <b>90s</b></span>
+          
+          <span class="pill">RIR <b>3 (moderado)</b></span>
+        </div>
+        <div class="regrow" data-day="Miercoles" data-row="3">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">D</div>
+          <div class="ex-name">Vuelos laterales con hold alterno (un brazo trabaja, el otro sostiene)</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>8 por brazo</b></span>
+          <span class="pill">Descanso <b>60s</b></span>
+          <span class="pill load">10 c/mano</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Miercoles" data-row="4">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">E</div>
+          <div class="ex-name">Posteriores (pájaro) sentado en banco inclinado</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>15</b></span>
+          <span class="pill">Descanso <b>60s</b></span>
+          <span class="pill load">10 c/mano</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Miercoles" data-row="5">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">F</div>
+          <div class="ex-name">Elevación frontal con disco</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>12</b></span>
+          <span class="pill">Descanso <b>45s</b></span>
+          <span class="pill load">10 - 15</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Miercoles" data-row="6">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">G</div>
+          <div class="ex-name">Encogimientos de hombros con mancuernas (pausa 2s arriba)</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>20</b></span>
+          <span class="pill">Descanso <b>45s</b></span>
+          <span class="pill load">30 c/mano</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Miercoles" data-row="7">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+        <div class="card block-ref">
+          <div class="card-head">
+            <div class="blk">CORE</div>
+            <div class="ex-name">Bloque de core — 7 minutos exactos, al final de la sesión</div>
+          </div>
+          <p class="block-note">AMRAP 7' — tantas vueltas como puedas, descanso solo el necesario.</p>
+          <table class="reftable">
+            <thead><tr><th>#</th><th>Ejercicio</th><th>Trabajo</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Rotación resistida con banda de pie</td><td>8 por lado</td></tr><tr><td>2</td><td>Elevación de piernas colgado de la barra de dominadas</td><td>10</td></tr><tr><td>3</td><td>Mountain climbers</td><td>20 total</td></tr><tr><td>4</td><td>Crunch</td><td>12</td></tr>
+            </tbody>
+          </table>
+        </div>
+      <div class="card rest">Duración total estimada de la sesión: <b style="color:var(--ink)">60 min</b></div>
+    <div class="chartbox">
+      <h3>Carga sugerida vs. registrada</h3>
+      <div class="legend">
+        <span><i class="dot" style="background:#4a4a50"></i>Sugerida</span>
+        <span><i class="dot" style="background:var(--amber)"></i>Registrada (prom.)</span>
+      </div>
+      <div id="chart-Miercoles"></div>
+    </div>
+
+    <div class="export">
+      <h3>Copiar para pegar en Google Sheets</h3>
+      <p>Copia las 4 columnas de "Registro" en el mismo orden de filas que la hoja "Miercoles". Seleccioná la celda <b>J5</b> de esa hoja y pegá (Ctrl+V / Cmd+V).</p>
+      <button onclick="copyDay(&#39;Miercoles&#39;, this)">Copiar registro de Miercoles</button>
+    </div>
+  </div><div class="panel" data-day="Jueves">
+    <div class="daytitle"><h2>Jueves — Pecho y Espalda (antagonistas)</h2><span class="duration">62.5 min</span></div>
+    <p class="daysub">Frecuencia 2 de pecho (con lunes) y espalda (con martes).</p>
+  <div class="card rest">CAL — Calentamiento: banda para hombro + 2 series de aproximación en press inclinado y remo · Barra vacía y 50%</div><div class="group super"><div class="super-tag">Superserie — sin descanso entre ejercicios</div>
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">A1</div>
+          <div class="ex-name">Press inclinado con barra</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>8</b></span>
+          <span class="pill">Descanso <b>120s</b></span>
+          <span class="pill load">70</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Jueves" data-row="1">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">A2</div>
+          <div class="ex-name">Aperturas concéntricas con banda elástica de pie</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>15</b></span>
+          <span class="pill">Descanso <b>-s</b></span>
+          <span class="pill load">Banda violeta</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Jueves" data-row="2">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    </div><div class="group super"><div class="super-tag">Superserie — sin descanso entre ejercicios</div>
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">B1</div>
+          <div class="ex-name">Remo con barra, agarre prono</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>8</b></span>
+          <span class="pill">Descanso <b>120s</b></span>
+          <span class="pill load">30 - 32,5</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Jueves" data-row="3">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">B2</div>
+          <div class="ex-name">Pull-over con banda elástica de pie</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>15</b></span>
+          <span class="pill">Descanso <b>-s</b></span>
+          <span class="pill load">Banda violeta</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Jueves" data-row="4">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">C</div>
+          <div class="ex-name">Press plano con mancuernas</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>10</b></span>
+          <span class="pill">Descanso <b>90s</b></span>
+          <span class="pill load">25 c/mano</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Jueves" data-row="5">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">D</div>
+          <div class="ex-name">Dominadas estrictas (peso corporal, sin lastre)</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>6-8</b></span>
+          <span class="pill">Descanso <b>90s</b></span>
+          <span class="pill load">Peso corporal</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Jueves" data-row="6">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">E</div>
+          <div class="ex-name">Pull-over con mancuerna en banco</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>12</b></span>
+          <span class="pill">Descanso <b>75s</b></span>
+          <span class="pill load">25</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Jueves" data-row="7">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">F</div>
+          <div class="ex-name">Aperturas en banco inclinado con mancuernas</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>12</b></span>
+          <span class="pill">Descanso <b>75s</b></span>
+          <span class="pill load">15 - 20 c/mano</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Jueves" data-row="8">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+        <div class="card block-ref">
+          <div class="card-head">
+            <div class="blk">CORE</div>
+            <div class="ex-name">Bloque de core — 7 minutos exactos, al final de la sesión</div>
+          </div>
+          <p class="block-note">AMRAP 7' — tantas vueltas como puedas, descanso solo el necesario.</p>
+          <table class="reftable">
+            <thead><tr><th>#</th><th>Ejercicio</th><th>Trabajo</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Pallof press de pie (1 intervalo por lado)</td><td>20 s c/u</td></tr><tr><td>2</td><td>Plancha</td><td>30 s</td></tr><tr><td>3</td><td>Hollow rock</td><td>20 s c/u</td></tr><tr><td>4</td><td>Elevación de piernas colgado</td><td>20 s c/u</td></tr><tr><td>5</td><td>Russian twist con disco</td><td>20 s c/u</td></tr><tr><td>6</td><td>Flutter kicks</td><td>20 s c/u</td></tr><tr><td>7</td><td>Plancha</td><td>30 s</td></tr>
+            </tbody>
+          </table>
+        </div>
+      <div class="card rest">Duración total estimada de la sesión: <b style="color:var(--ink)">62.5 min</b></div>
+    <div class="chartbox">
+      <h3>Carga sugerida vs. registrada</h3>
+      <div class="legend">
+        <span><i class="dot" style="background:#4a4a50"></i>Sugerida</span>
+        <span><i class="dot" style="background:var(--amber)"></i>Registrada (prom.)</span>
+      </div>
+      <div id="chart-Jueves"></div>
+    </div>
+
+    <div class="export">
+      <h3>Copiar para pegar en Google Sheets</h3>
+      <p>Copia las 4 columnas de "Registro" en el mismo orden de filas que la hoja "Jueves". Seleccioná la celda <b>J5</b> de esa hoja y pegá (Ctrl+V / Cmd+V).</p>
+      <button onclick="copyDay(&#39;Jueves&#39;, this)">Copiar registro de Jueves</button>
+    </div>
+  </div><div class="panel" data-day="Viernes">
+    <div class="daytitle"><h2>Viernes — Hombros y Brazos</h2><span class="duration">61.8 min</span></div>
+    <p class="daysub">Sesión de bombeo / detalle. Frecuencia 2 de hombros (con miércoles) y bíceps/tríceps.</p>
+  <div class="card rest">CAL — Calentamiento: banda para manguito + 2 series de aproximación en press de hombros · Banda y 50%</div>
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">A</div>
+          <div class="ex-name">Press de hombros sentado con mancuernas (banco a 80-90°)</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>10</b></span>
+          <span class="pill">Descanso <b>120s</b></span>
+          <span class="pill load">17,5 - 20 c/mano</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Viernes" data-row="1">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">B</div>
+          <div class="ex-name">Fondos en paralelas con lastre</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>10</b></span>
+          <span class="pill">Descanso <b>90s</b></span>
+          <span class="pill load">Lastre +5 a +10</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Viernes" data-row="2">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">C</div>
+          <div class="ex-name">Vuelos laterales de pie con mancuernas</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>15</b></span>
+          <span class="pill">Descanso <b>60s</b></span>
+          <span class="pill load">10 c/mano</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Viernes" data-row="3">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">D</div>
+          <div class="ex-name">Curl simultáneo con mancuernas (2 brazos a la vez)</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>4</b> x <b>12</b></span>
+          <span class="pill">Descanso <b>60s</b></span>
+          <span class="pill load">15 c/mano</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Viernes" data-row="4">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">E</div>
+          <div class="ex-name">Skullcrusher con barra</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>12</b></span>
+          <span class="pill">Descanso <b>60s</b></span>
+          <span class="pill load">30</span>
+          <span class="pill">RIR <b>2</b></span>
+        </div>
+        <div class="regrow" data-day="Viernes" data-row="5">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">F</div>
+          <div class="ex-name">Curl martillo con mancuernas</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>12</b></span>
+          <span class="pill">Descanso <b>60s</b></span>
+          <span class="pill load">12,5 - 15 c/mano</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Viernes" data-row="6">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">G</div>
+          <div class="ex-name">Posteriores con banda elástica de pie (abducción horizontal)</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>3</b> x <b>20</b></span>
+          <span class="pill">Descanso <b>45s</b></span>
+          <span class="pill load">Banda media</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Viernes" data-row="7">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">H</div>
+          <div class="ex-name">Elevación frontal con disco</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>2</b> x <b>15</b></span>
+          <span class="pill">Descanso <b>45s</b></span>
+          <span class="pill load">10 - 15</span>
+          <span class="pill">RIR <b>1</b></span>
+        </div>
+        <div class="regrow" data-day="Viernes" data-row="8">
+          
+            <div class="reg">
+              <label>Serie 1</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="0">
+            </div>
+            <div class="reg">
+              <label>Serie 2</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="1">
+            </div>
+            <div class="reg">
+              <label>Serie 3</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="2">
+            </div>
+            <div class="reg">
+              <label>Serie 4</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="3">
+            </div>
+        </div>
+      </div>
+    
+        <div class="card block-ref">
+          <div class="card-head">
+            <div class="blk">CORE</div>
+            <div class="ex-name">Bloque de core — 7 minutos exactos, al final de la sesión</div>
+          </div>
+          <p class="block-note">AMRAP 7' — tantas vueltas como puedas, descanso solo el necesario.</p>
+          <table class="reftable">
+            <thead><tr><th>#</th><th>Ejercicio</th><th>Trabajo</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Pallof press de pie — derecha</td><td>40 s</td></tr><tr><td>2</td><td>Pallof press de pie — izquierda</td><td>40 s</td></tr><tr><td>3</td><td>V-ups</td><td>8-10 c/u</td></tr><tr><td>4</td><td>Hollow rock</td><td>12 reps</td></tr><tr><td>5</td><td>Abdominales bici</td><td>12 reps</td></tr><tr><td>6</td><td>Plancha</td><td>40 s</td></tr><tr><td>7</td><td>Elevación de piernas colgado</td><td>12 reps</td></tr>
+            </tbody>
+          </table>
+        </div>
+      <div class="card rest">Duración total estimada de la sesión: <b style="color:var(--ink)">61.8 min</b></div>
+    <div class="chartbox">
+      <h3>Carga sugerida vs. registrada</h3>
+      <div class="legend">
+        <span><i class="dot" style="background:#4a4a50"></i>Sugerida</span>
+        <span><i class="dot" style="background:var(--amber)"></i>Registrada (prom.)</span>
+      </div>
+      <div id="chart-Viernes"></div>
+    </div>
+
+    <div class="export">
+      <h3>Copiar para pegar en Google Sheets</h3>
+      <p>Copia las 4 columnas de "Registro" en el mismo orden de filas que la hoja "Viernes". Seleccioná la celda <b>J5</b> de esa hoja y pegá (Ctrl+V / Cmd+V).</p>
+      <button onclick="copyDay(&#39;Viernes&#39;, this)">Copiar registro de Viernes</button>
+    </div>
+  </div><div class="panel" data-day="__resumen__">
+    <div class="daytitle"><h2>Resumen semanal</h2><span class="duration">308 min totales</span></div>
+    <p class="daysub">5 sesiones de tren superior, frecuencia 2 por grupo muscular.</p>
+    <div class="chartbox">
+      <h3>Duración por sesión</h3>
+      
+        <div class="sum-bar">
+          <div class="sum-day">Lun</div>
+          <div class="sum-track"><div class="sum-fill" style="width:97.76%"></div></div>
+          <div class="sum-min">61.1 min</div>
+        </div>
+      
+        <div class="sum-bar">
+          <div class="sum-day">Mar</div>
+          <div class="sum-track"><div class="sum-fill" style="width:99.83999999999999%"></div></div>
+          <div class="sum-min">62.4 min</div>
+        </div>
+      
+        <div class="sum-bar">
+          <div class="sum-day">Mie</div>
+          <div class="sum-track"><div class="sum-fill" style="width:96%"></div></div>
+          <div class="sum-min">60 min</div>
+        </div>
+      
+        <div class="sum-bar">
+          <div class="sum-day">Jue</div>
+          <div class="sum-track"><div class="sum-fill" style="width:100%"></div></div>
+          <div class="sum-min">62.5 min</div>
+        </div>
+      
+        <div class="sum-bar">
+          <div class="sum-day">Vie</div>
+          <div class="sum-track"><div class="sum-fill" style="width:98.88%"></div></div>
+          <div class="sum-min">61.8 min</div>
+        </div>
+      
+    </div>
+    <div class="freqgrid">
+      <div class="freqcard"><div class="g">Pecho</div><div class="d">Lunes + Jueves</div></div><div class="freqcard"><div class="g">Espalda</div><div class="d">Martes + Jueves</div></div><div class="freqcard"><div class="g">Hombros</div><div class="d">Miércoles + Viernes</div></div><div class="freqcard"><div class="g">Bíceps</div><div class="d">Martes + Viernes</div></div><div class="freqcard"><div class="g">Tríceps</div><div class="d">Lunes + Viernes</div></div><div class="freqcard"><div class="g">Cadena posterior</div><div class="d">Lunes + Miércoles</div></div>
+    </div>
+  </div></div>
+
+</div>
+
+<script>
+const DAYS = [
+  {
+    key:"Lunes", title:"Lunes — Pecho, Tríceps y Peso Muerto", sub:"Cadena posterior: peso muerto convencional + hip thrust liviano de bombeo.", total:61.1,
+    rows:[
+      {blk:"CAL",name:"Calentamiento: movilidad hombro/cadera + 2 series de aproximación en press plano",series:"-",reps:"-",descanso:"-",carga:"Barra vacía y 50%",rir:"-",input:false},
+      {blk:"A1",name:"Press plano con barra",series:"4",reps:"6-8",descanso:"150",carga:"60 - 62,5",rir:"2",input:true},
+      {blk:"A2",name:"Peso muerto convencional",series:"3",reps:"5",descanso:"150",carga:"",rir:"",input:true},
+      {blk:"B1",name:"Press inclinado con mancuernas",series:"4",reps:"8-10",descanso:"90",carga:"22,5 - 25 c/mano",rir:"2",input:true,group:"super-b"},
+      {blk:"B2",name:"Aperturas fase concéntrica con banda elástica de pie",series:"4",reps:"15",descanso:"-",carga:"Banda violeta",rir:"1",input:true,group:"super-b"},
+      {blk:"C",name:"Hip thrust con barra (espalda alta en banco inclinado)",series:"3",reps:"12",descanso:"60",carga:"",rir:"",input:true},
+      {blk:"D",name:"Fondos en paralelas con lastre (énfasis tríceps, torso vertical)",series:"3",reps:"8-10",descanso:"90",carga:"Lastre +5 a +10",rir:"2",input:true},
+      {blk:"E",name:"Press francés sentado con barra",series:"3",reps:"10",descanso:"75",carga:"25",rir:"2",input:true},
+      {blk:"F",name:"Pinch press inclinado con disco",series:"2",reps:"15",descanso:"45",carga:"20 - 30",rir:"1",input:true},
+      {blk:"CORE",name:"Bloque de core: EMOM 7'",series:"-",reps:"-",descanso:"-",carga:"-",rir:"-",input:false},
+      {blk:"TOT",name:"Duración total de la sesión",series:"",reps:"",descanso:"",carga:"",rir:"",input:false,isTotal:true}
+    ]
+  },
+  {
+    key:"Martes", title:"Martes — Espalda y Bíceps", sub:"Frecuencia 2 de espalda (con jueves).", total:62.4,
+    rows:[
+      {blk:"CAL",name:"Calentamiento: banda para hombro/escápula + 2 series de aproximación en dominadas y remo",series:"-",reps:"-",descanso:"-",carga:"Peso corporal y 50%",rir:"-",input:false},
+      {blk:"A",name:"Dominadas estrictas con lastre",series:"4",reps:"5-6",descanso:"150",carga:"Lastre +5 (subir si salen 6 limpias)",rir:"2",input:true},
+      {blk:"B1",name:"Remo con barra, agarre supino, codos pegados",series:"4",reps:"8-10",descanso:"90",carga:"30 - 32,5",rir:"2",input:true,group:"super-b"},
+      {blk:"B2",name:"Pull-over / tirón con banda elástica de pie",series:"4",reps:"15",descanso:"-",carga:"Banda violeta",rir:"1",input:true,group:"super-b"},
+      {blk:"C",name:"Remo unilateral a 3 apoyos con mancuerna",series:"3",reps:"10 por lado",descanso:"75",carga:"25 - 27,5",rir:"2",input:true},
+      {blk:"D",name:"Remo a 45° con pecho apoyado en banco inclinado",series:"3",reps:"12",descanso:"75",carga:"22,5",rir:"1",input:true},
+      {blk:"E",name:"Curl de bíceps con barra + hold isométrico 15s en la última rep",series:"4",reps:"10",descanso:"75",carga:"15 - 17,5",rir:"2",input:true},
+      {blk:"F",name:"Curl alternado con mancuernas (supinación completa)",series:"3",reps:"12",descanso:"60",carga:"15",rir:"1",input:true},
+      {blk:"G",name:"Face pull con banda elástica de pie",series:"2",reps:"20",descanso:"45",carga:"Banda violeta",rir:"1",input:true},
+      {blk:"CORE",name:"Bloque de core: circuito 2 vueltas",series:"-",reps:"-",descanso:"-",carga:"-",rir:"-",input:false},
+      {blk:"TOT",name:"Duración total de la sesión",series:"",reps:"",descanso:"",carga:"",rir:"",input:false,isTotal:true}
+    ]
+  },
+  {
+    key:"Miercoles", title:"Miércoles — Hombros y Hip Thrust", sub:"Hip thrust pesado + peso muerto rumano (RIR 3, sin acumular fatiga lumbar antes del jueves).", total:60,
+    rows:[
+      {blk:"CAL",name:"Calentamiento: movilidad torácica/hombro + 2 series de aproximación en press militar y hip thrust",series:"-",reps:"-",descanso:"-",carga:"Barra vacía y 50%",rir:"-",input:false},
+      {blk:"A",name:"Press militar de pie con barra",series:"4",reps:"6-8",descanso:"150",carga:"22,5 - 25",rir:"2",input:true},
+      {blk:"B",name:"Hip thrust con barra (serie pesada)",series:"4",reps:"8-10",descanso:"120",carga:"",rir:"",input:true},
+      {blk:"C",name:"Peso muerto rumano con barra",series:"3",reps:"10",descanso:"90",carga:"",rir:"3 (moderado)",input:true},
+      {blk:"D",name:"Vuelos laterales con hold alterno (un brazo trabaja, el otro sostiene)",series:"4",reps:"8 por brazo",descanso:"60",carga:"10 c/mano",rir:"1",input:true},
+      {blk:"E",name:"Posteriores (pájaro) sentado en banco inclinado",series:"3",reps:"15",descanso:"60",carga:"10 c/mano",rir:"1",input:true},
+      {blk:"F",name:"Elevación frontal con disco",series:"3",reps:"12",descanso:"45",carga:"10 - 15",rir:"1",input:true},
+      {blk:"G",name:"Encogimientos de hombros con mancuernas (pausa 2s arriba)",series:"3",reps:"20",descanso:"45",carga:"30 c/mano",rir:"1",input:true},
+      {blk:"CORE",name:"Bloque de core: AMRAP 7'",series:"-",reps:"-",descanso:"-",carga:"-",rir:"-",input:false},
+      {blk:"TOT",name:"Duración total de la sesión",series:"",reps:"",descanso:"",carga:"",rir:"",input:false,isTotal:true}
+    ]
+  },
+  {
+    key:"Jueves", title:"Jueves — Pecho y Espalda (antagonistas)", sub:"Frecuencia 2 de pecho (con lunes) y espalda (con martes).", total:62.5,
+    rows:[
+      {blk:"CAL",name:"Calentamiento: banda para hombro + 2 series de aproximación en press inclinado y remo",series:"-",reps:"-",descanso:"-",carga:"Barra vacía y 50%",rir:"-",input:false},
+      {blk:"A1",name:"Press inclinado con barra",series:"4",reps:"8",descanso:"120",carga:"70",rir:"2",input:true,group:"super-a"},
+      {blk:"A2",name:"Aperturas concéntricas con banda elástica de pie",series:"4",reps:"15",descanso:"-",carga:"Banda violeta",rir:"1",input:true,group:"super-a"},
+      {blk:"B1",name:"Remo con barra, agarre prono",series:"4",reps:"8",descanso:"120",carga:"30 - 32,5",rir:"2",input:true,group:"super-b"},
+      {blk:"B2",name:"Pull-over con banda elástica de pie",series:"4",reps:"15",descanso:"-",carga:"Banda violeta",rir:"1",input:true,group:"super-b"},
+      {blk:"C",name:"Press plano con mancuernas",series:"4",reps:"10",descanso:"90",carga:"25 c/mano",rir:"2",input:true},
+      {blk:"D",name:"Dominadas estrictas (peso corporal, sin lastre)",series:"4",reps:"6-8",descanso:"90",carga:"Peso corporal",rir:"2",input:true},
+      {blk:"E",name:"Pull-over con mancuerna en banco",series:"3",reps:"12",descanso:"75",carga:"25",rir:"1",input:true},
+      {blk:"F",name:"Aperturas en banco inclinado con mancuernas",series:"3",reps:"12",descanso:"75",carga:"15 - 20 c/mano",rir:"1",input:true},
+      {blk:"CORE",name:"Bloque de core: 14 intervalos 20/10",series:"-",reps:"-",descanso:"-",carga:"-",rir:"-",input:false},
+      {blk:"TOT",name:"Duración total de la sesión",series:"",reps:"",descanso:"",carga:"",rir:"",input:false,isTotal:true}
+    ]
+  },
+  {
+    key:"Viernes", title:"Viernes — Hombros y Brazos", sub:"Sesión de bombeo / detalle. Frecuencia 2 de hombros (con miércoles) y bíceps/tríceps.", total:61.8,
+    rows:[
+      {blk:"CAL",name:"Calentamiento: banda para manguito + 2 series de aproximación en press de hombros",series:"-",reps:"-",descanso:"-",carga:"Banda y 50%",rir:"-",input:false},
+      {blk:"A",name:"Press de hombros sentado con mancuernas (banco a 80-90°)",series:"4",reps:"10",descanso:"120",carga:"17,5 - 20 c/mano",rir:"2",input:true},
+      {blk:"B",name:"Fondos en paralelas con lastre",series:"4",reps:"10",descanso:"90",carga:"Lastre +5 a +10",rir:"2",input:true},
+      {blk:"C",name:"Vuelos laterales de pie con mancuernas",series:"4",reps:"15",descanso:"60",carga:"10 c/mano",rir:"1",input:true},
+      {blk:"D",name:"Curl simultáneo con mancuernas (2 brazos a la vez)",series:"4",reps:"12",descanso:"60",carga:"15 c/mano",rir:"1",input:true},
+      {blk:"E",name:"Skullcrusher con barra",series:"3",reps:"12",descanso:"60",carga:"30",rir:"2",input:true},
+      {blk:"F",name:"Curl martillo con mancuernas",series:"3",reps:"12",descanso:"60",carga:"12,5 - 15 c/mano",rir:"1",input:true},
+      {blk:"G",name:"Posteriores con banda elástica de pie (abducción horizontal)",series:"3",reps:"20",descanso:"45",carga:"Banda media",rir:"1",input:true},
+      {blk:"H",name:"Elevación frontal con disco",series:"2",reps:"15",descanso:"45",carga:"10 - 15",rir:"1",input:true},
+      {blk:"CORE",name:"Bloque de core: EMOM 7'",series:"-",reps:"-",descanso:"-",carga:"-",rir:"-",input:false},
+      {blk:"TOT",name:"Duración total de la sesión",series:"",reps:"",descanso:"",carga:"",rir:"",input:false,isTotal:true}
+    ]
+  }
+];
+
+const FREQ = [
+  {g:"Pecho", d:"Lunes + Jueves"},
+  {g:"Espalda", d:"Martes + Jueves"},
+  {g:"Hombros", d:"Miércoles + Viernes"},
+  {g:"Bíceps", d:"Martes + Viernes"},
+  {g:"Tríceps", d:"Lunes + Viernes"},
+  {g:"Cadena posterior", d:"Lunes + Miércoles"}
+];
+
+// Activación de tren inferior con banda (hoja "Banda LyM T. inf" — sin columnas de Registro,
+// se muestra como referencia). Asunción: se realiza en Lunes y Miércoles por ser los días
+// con trabajo de cadena posterior (peso muerto / hip thrust). Ajustable si corresponde otro día.
+const ACTIVATION_DAYS = ["Lunes","Miercoles"];
+const ACTIVATION = [
+  {orden:1, ej:"Side step", trabajo:"3x10", carga:"Banda rosa"},
+  {orden:2, ej:"Side step", trabajo:"3x10", carga:"Banda larga negra"},
+  {orden:3, ej:"Patada en extensión lateral", trabajo:"3x10", carga:"Banda rosa"},
+  {orden:4, ej:"Patada en extensión posterior", trabajo:"3x10", carga:"Banda rosa"},
+  {orden:5, ej:"Patada con rodilla en extensión frontal", trabajo:"3x10", carga:"Banda rosa"}
+];
+
+// Detalle de core por día (hoja "Abdominales" — 7 min exactos al final de cada sesión).
+const CORE = {
+  Lunes: {formato:"EMOM 7' — 1 ejercicio por minuto, ~40s de trabajo, descansás lo que sobra del minuto.", ex:[
+    {n:"Pallof press con banda de pie — lado derecho", t:"40 s"},
+    {n:"Pallof press con banda de pie — lado izquierdo", t:"40 s"},
+    {n:"Plancha frontal con toque de hombro", t:"40 s"},
+    {n:"V-ups alternados", t:"40 s"},
+    {n:"Abdominales bici", t:"40 s"},
+    {n:"Hollow hold", t:"40 s"},
+    {n:"Dead bug con mancuerna", t:"40 s"}
+  ]},
+  Martes: {formato:"Circuito 2 vueltas — 5 ejercicios x 30s trabajo / 12s transición (3'30'' por vuelta).", ex:[
+    {n:"Pallof press de pie con paso lateral — derecha", t:"30 s"},
+    {n:"Pallof press de pie con paso lateral — izquierda", t:"30 s"},
+    {n:"Plancha", t:"30 s"},
+    {n:"Shoulder taps", t:"30 s"},
+    {n:"Crunch", t:"30 s"}
+  ]},
+  Miercoles: {formato:"AMRAP 7' — tantas vueltas como puedas, descanso solo el necesario.", ex:[
+    {n:"Rotación resistida con banda de pie", t:"8 por lado"},
+    {n:"Elevación de piernas colgado de la barra de dominadas", t:"10"},
+    {n:"Mountain climbers", t:"20 total"},
+    {n:"Crunch", t:"12"}
+  ]},
+  Jueves: {formato:"AMRAP 7' — tantas vueltas como puedas, descanso solo el necesario.", ex:[
+    {n:"Pallof press de pie (1 intervalo por lado)", t:"20 s c/u"},
+    {n:"Plancha", t:"30 s"},
+    {n:"Hollow rock", t:"20 s c/u"},
+    {n:"Elevación de piernas colgado", t:"20 s c/u"},
+    {n:"Russian twist con disco", t:"20 s c/u"},
+    {n:"Flutter kicks", t:"20 s c/u"},
+    {n:"Plancha", t:"30 s"}
+  ]},
+  Viernes: {formato:"AMRAP 7' — tantas vueltas como puedas, descanso solo el necesario.", ex:[
+    {n:"Pallof press de pie — derecha", t:"40 s"},
+    {n:"Pallof press de pie — izquierda", t:"40 s"},
+    {n:"V-ups", t:"8-10 c/u"},
+    {n:"Hollow rock", t:"12 reps"},
+    {n:"Abdominales bici", t:"12 reps"},
+    {n:"Plancha", t:"40 s"},
+    {n:"Elevación de piernas colgado", t:"12 reps"}
+  ]}
+};
+
+let store = {}; // in-memory mirror of window.storage, key: `reg:{day}:{rowIndex}` -> [s1,s2,s3,s4]
+
+function parseFirstNumber(str){
+  if(!str) return null;
+  const m = String(str).replace(",", ".").match(/(\d+(\.\d+)?)/);
+  return m ? parseFloat(m[1]) : null;
+}
+
+// Guardado en localStorage del navegador: persiste en este dispositivo/navegador
+// mientras no borres datos de sitio. No se sincroniza entre dispositivos.
+async function loadDay(dayKey){
+  const rows = DAYS.find(d=>d.key===dayKey).rows;
+  for(let i=0;i<rows.length;i++){
+    if(!rows[i].input) continue;
+    const k = `reg:${dayKey}:${i}`;
+    try{
+      const raw = localStorage.getItem(k);
+      if(raw){ store[k] = JSON.parse(raw); }
+    }catch(e){ /* not found yet, ignore */ }
+  }
+}
+
+async function saveCell(dayKey, rowIndex, values){
+  const k = `reg:${dayKey}:${rowIndex}`;
+  store[k] = values;
+  try{ localStorage.setItem(k, JSON.stringify(values)); }
+  catch(e){ console.error("storage error", e); }
+}
+
+function buildTabs(){
+  const tabs = document.getElementById("tabs");
+  DAYS.forEach((d,i)=>{
+    const btn = document.createElement("div");
+    btn.className = "tab" + (i===0?" active":"");
+    btn.textContent = d.key.slice(0,3);
+    btn.onclick = ()=> selectTab(d.key);
+    btn.dataset.day = d.key;
+    tabs.appendChild(btn);
+  });
+  const sumBtn = document.createElement("div");
+  sumBtn.className = "tab";
+  sumBtn.textContent = "Resumen";
+  sumBtn.dataset.day = "__resumen__";
+  sumBtn.onclick = ()=> selectTab("__resumen__");
+  tabs.appendChild(sumBtn);
+}
+
+function selectTab(key){
+  document.querySelectorAll(".tab").forEach(t=> t.classList.toggle("active", t.dataset.day===key));
+  document.querySelectorAll(".panel").forEach(p=> p.classList.toggle("active", p.dataset.day===key));
+  if(key!=="__resumen__") renderChart(key);
+}
+
+function renderDayPanel(day){
+  const panel = document.createElement("div");
+  panel.className = "panel";
+  panel.dataset.day = day.key;
+
+  let html = `
+    <div class="daytitle"><h2>${day.title}</h2><span class="duration">${day.total} min</span></div>
+    <p class="daysub">${day.sub}</p>
+  `;
+
+  if(ACTIVATION_DAYS.includes(day.key)){
+    html += `
+      <div class="card block-ref">
+        <div class="card-head">
+          <div class="blk">ACT</div>
+          <div class="ex-name">Activación de tren inferior con banda</div>
+        </div>
+        <p class="block-note">De la hoja "Banda LyM T. inf" — sin columnas de Registro en el Sheet, se muestra como referencia (no cuenta para la duración total ni para el export).</p>
+        <table class="reftable">
+          <thead><tr><th>#</th><th>Ejercicio</th><th>Trabajo</th><th>Carga</th></tr></thead>
+          <tbody>
+            ${ACTIVATION.map(a=>`<tr><td>${a.orden}</td><td>${a.ej}</td><td>${a.trabajo}</td><td>${a.carga}</td></tr>`).join("")}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  let openGroup = null;
+  day.rows.forEach((row, idx)=>{
+    const isGroupStart = row.group && row.group !== openGroup;
+    const isGroupEnd = openGroup && row.group !== openGroup;
+    if(isGroupEnd){ html += `</div>`; openGroup = null; }
+    if(isGroupStart){ html += `<div class="group super"><div class="super-tag">Superserie — sin descanso entre ejercicios</div>`; openGroup = row.group; }
+
+    if(row.isTotal){
+      html += `<div class="card rest">Duración total estimada de la sesión: <b style="color:var(--ink)">${day.total} min</b></div>`;
+      return;
+    }
+    if(row.blk === "CORE"){
+      const c = CORE[day.key];
+      html += `
+        <div class="card block-ref">
+          <div class="card-head">
+            <div class="blk">CORE</div>
+            <div class="ex-name">Bloque de core — 7 minutos exactos, al final de la sesión</div>
+          </div>
+          <p class="block-note">${c.formato}</p>
+          <table class="reftable">
+            <thead><tr><th>#</th><th>Ejercicio</th><th>Trabajo</th></tr></thead>
+            <tbody>
+              ${c.ex.map((e,i)=>`<tr><td>${i+1}</td><td>${e.n}</td><td>${e.t}</td></tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+      return;
+    }
+    if(!row.input){
+      html += `<div class="card rest">${row.blk} — ${row.name}${row.carga && row.carga !== "-" ? " · " + row.carga : ""}</div>`;
+      return;
+    }
+
+    html += `
+      <div class="card">
+        <div class="card-head">
+          <div class="blk">${row.blk}</div>
+          <div class="ex-name">${row.name}</div>
+        </div>
+        <div class="meta">
+          <span class="pill"><b>${row.series}</b> x <b>${row.reps}</b></span>
+          <span class="pill">Descanso <b>${row.descanso}s</b></span>
+          ${row.carga ? `<span class="pill load">${row.carga}</span>` : ``}
+          ${row.rir ? `<span class="pill">RIR <b>${row.rir}</b></span>` : ``}
+        </div>
+        <div class="regrow" data-day="${day.key}" data-row="${idx}">
+          ${[1,2,3,4].map(s=>`
+            <div class="reg">
+              <label>Serie ${s}</label>
+              <input type="text" inputmode="decimal" placeholder="kg" data-set="${s-1}">
+            </div>`).join("")}
+        </div>
+      </div>
+    `;
+  });
+  if(openGroup) html += `</div>`;
+
+  html += `
+    <div class="chartbox">
+      <h3>Carga sugerida vs. registrada</h3>
+      <div class="legend">
+        <span><i class="dot" style="background:#4a4a50"></i>Sugerida</span>
+        <span><i class="dot" style="background:var(--amber)"></i>Registrada (prom.)</span>
+      </div>
+      <div id="chart-${day.key}"></div>
+    </div>
+
+    <div class="export">
+      <h3>Copiar para pegar en Google Sheets</h3>
+      <p>Copia las 4 columnas de "Registro" en el mismo orden de filas que la hoja "${day.key}". Seleccioná la celda <b>J5</b> de esa hoja y pegá (Ctrl+V / Cmd+V).</p>
+      <button onclick="copyDay('${day.key}', this)">Copiar registro de ${day.key}</button>
+    </div>
+  `;
+
+  panel.innerHTML = html;
+  document.getElementById("panels").appendChild(panel);
+
+  panel.querySelectorAll(".regrow").forEach(rg=>{
+    rg.querySelectorAll("input").forEach(inp=>{
+      inp.addEventListener("change", async ()=>{
+        const dayKey = rg.dataset.day, rowIdx = rg.dataset.row;
+        const inputs = [...rg.querySelectorAll("input")];
+        const values = inputs.map(i=>i.value.trim());
+        await saveCell(dayKey, rowIdx, values);
+        inp.classList.add("saved");
+        setTimeout(()=>inp.classList.remove("saved"), 900);
+        renderChart(dayKey);
+      });
+    });
+  });
+}
+
+function fillStoredInputs(dayKey){
+  const panel = document.querySelector(`.panel[data-day="${dayKey}"]`);
+  if(!panel) return;
+  panel.querySelectorAll(".regrow").forEach(rg=>{
+    const k = `reg:${dayKey}:${rg.dataset.row}`;
+    const vals = store[k];
+    if(!vals) return;
+    rg.querySelectorAll("input").forEach(inp=>{
+      const v = vals[parseInt(inp.dataset.set)];
+      if(v) inp.value = v;
+    });
+  });
+}
+
+function renderChart(dayKey){
+  const day = DAYS.find(d=>d.key===dayKey);
+  const container = document.getElementById(`chart-${dayKey}`);
+  if(!container) return;
+  container.innerHTML = "";
+  let maxVal = 1;
+  const bars = [];
+
+  day.rows.forEach((row, idx)=>{
+    if(!row.input) return;
+    const sug = parseFirstNumber(row.carga);
+    const k = `reg:${dayKey}:${idx}`;
+    const vals = (store[k]||[]).map(v=>parseFirstNumber(v)).filter(v=>v!==null);
+    const avg = vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
+    if(sug===null && avg===null) return;
+    maxVal = Math.max(maxVal, sug||0, avg||0);
+    bars.push({label: row.name.length>26 ? row.name.slice(0,24)+"…" : row.name, sug, avg});
+  });
+
+  if(!bars.length){
+    container.innerHTML = `<p style="color:var(--ink-dim);font-size:11.5px;">Cargá pesos con números para ver el gráfico de esta sesión.</p>`;
+    return;
+  }
+
+  bars.forEach(b=>{
+    const sugPct = b.sug ? (b.sug/maxVal*100) : 0;
+    const avgPct = b.avg ? (b.avg/maxVal*100) : 0;
+    const row = document.createElement("div");
+    row.innerHTML = `
+      <div class="bar-row">
+        <div class="bar-label">${b.label}</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
+          <div class="bar-track"><div class="bar-fill sug" style="width:${sugPct}%"></div></div>
+          <div class="bar-track"><div class="bar-fill act" style="width:${avgPct}%"></div></div>
+        </div>
+        <div class="bar-val">${b.avg ? b.avg.toFixed(1) : (b.sug?b.sug.toFixed(1):"-")}kg</div>
+      </div>
+    `;
+    container.appendChild(row);
+  });
+}
+
+function copyDay(dayKey, btn){
+  const day = DAYS.find(d=>d.key===dayKey);
+  const lines = day.rows.map((row, idx)=>{
+    if(!row.input) return "\t\t\t";
+    const k = `reg:${dayKey}:${idx}`;
+    const vals = store[k] || ["","","",""];
+    return [0,1,2,3].map(i=>vals[i]||"").join("\t");
+  });
+  const text = lines.join("\n");
+  navigator.clipboard.writeText(text).then(()=>{
+    const old = btn.textContent;
+    btn.textContent = "Copiado ✓";
+    setTimeout(()=>btn.textContent = old, 1500);
+  }).catch(()=>{
+    btn.textContent = "No se pudo copiar";
+  });
+}
+
+function renderResumen(){
+  const panel = document.createElement("div");
+  panel.className = "panel";
+  panel.dataset.day = "__resumen__";
+  const maxT = Math.max(...DAYS.map(d=>d.total));
+  const totalWeek = DAYS.reduce((a,d)=>a+d.total,0);
+
+  panel.innerHTML = `
+    <div class="daytitle"><h2>Resumen semanal</h2><span class="duration">${totalWeek.toFixed(0)} min totales</span></div>
+    <p class="daysub">5 sesiones de tren superior, frecuencia 2 por grupo muscular.</p>
+    <div class="chartbox">
+      <h3>Duración por sesión</h3>
+      ${DAYS.map(d=>`
+        <div class="sum-bar">
+          <div class="sum-day">${d.key.slice(0,3)}</div>
+          <div class="sum-track"><div class="sum-fill" style="width:${(d.total/maxT*100)}%"></div></div>
+          <div class="sum-min">${d.total} min</div>
+        </div>
+      `).join("")}
+    </div>
+    <div class="freqgrid">
+      ${FREQ.map(f=>`<div class="freqcard"><div class="g">${f.g}</div><div class="d">${f.d}</div></div>`).join("")}
+    </div>
+  `;
+  document.getElementById("panels").appendChild(panel);
+}
+
+async function init(){
+  buildTabs();
+  DAYS.forEach(renderDayPanel);
+  renderResumen();
+  document.querySelector(`.panel[data-day="${DAYS[0].key}"]`).classList.add("active");
+
+  for(const d of DAYS){ await loadDay(d.key); fillStoredInputs(d.key); }
+  renderChart(DAYS[0].key);
+}
+init();
+</script>
+
+
+</body></html>
