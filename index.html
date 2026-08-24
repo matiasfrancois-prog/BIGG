@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)file:///Users/matiasfrancois/Downloads/index_9.html -->
+<!-- saved from url=(0052)file:///Users/matiasfrancois/Downloads/index_10.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,11 +49,14 @@
   .duration{color:var(--amber);font-size:12px;font-weight:600;letter-spacing:0.05em;}
   .daysub{color:var(--ink-dim);font-size:12px;margin:0 0 12px;}
 
-  .equipbox{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-bottom:16px;}
-  .equip-label{font-size:10.5px;color:var(--ink-dim);letter-spacing:0.04em;text-transform:uppercase;margin-right:2px;}
-  .equip-pill{display:inline-flex;align-items:center;gap:5px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:4px 11px 4px 8px;font-size:11.5px;color:var(--ink);}
-  .equip-icon{width:15px;height:15px;color:var(--amber);flex:0 0 auto;}
+  .equipbox{display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px;margin-bottom:16px;}
+  .equip-label{font-size:10.5px;color:var(--ink-dim);letter-spacing:0.04em;text-transform:uppercase;margin-right:2px;align-self:center;}
+  .equip-pill{display:inline-flex;align-items:flex-start;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 12px 7px 9px;font-size:11.5px;color:var(--ink);}
+  .equip-icon{width:16px;height:16px;color:var(--amber);flex:0 0 auto;margin-top:1px;}
   .equip-icon svg{width:100%;height:100%;}
+  .equip-text{display:flex;flex-direction:column;gap:1px;}
+  .equip-text b{font-weight:600;}
+  .equip-loads{font-size:10px;color:var(--amber);font-weight:500;}
 
   /* superset bracket group */
   .group{position:relative;margin-bottom:10px;}
@@ -139,7 +142,7 @@
     <h1>Registro de entrenamiento</h1>
     <p>Cargá el peso de cada serie. Se guarda solo en este dispositivo — al final de cada día podés copiarlo para pegarlo directo en el Sheet.</p>
     <a class="drivelink" href="https://docs.google.com/spreadsheets/d/1dohpA9uUK667Pfu8jqYLxTat1WPMFrbF-TbUV7l0O64/edit" target="_blank" rel="noopener">Ver planilla original en Drive ↗</a>
-    <div id="buildmarker" style="margin-top:8px;font-size:10px;color:var(--ink-dim);">Versión 2026-08-24-v3 — si ves este texto, el script arrancó bien.</div>
+    <div id="buildmarker" style="margin-top:8px;font-size:10px;color:var(--ink-dim);">Versión 2026-08-24-v4 — si ves este texto, el script arrancó bien.</div>
   </div>
 
   <div class="tabs" id="tabs"><div class="tab active" data-day="Lunes">Lun</div><div class="tab" data-day="Martes">Mar</div><div class="tab" data-day="Miercoles">Mie</div><div class="tab" data-day="Jueves">Jue</div><div class="tab" data-day="Viernes">Vie</div><div class="tab" data-day="__resumen__">Resumen</div></div>
@@ -150,7 +153,71 @@
   
       <div class="equipbox">
         <span class="equip-label">Para hoy necesitás:</span>
-        <span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="12"></line><path d="M20 12 C10 16, 30 22, 12 26 C4 28, 30 30, 20 34"></path><line x1="20" y1="34" x2="20" y2="38"></line></svg></span>Banda elástica</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="10" y1="6" x2="10" y2="20"></line><line x1="30" y1="6" x2="30" y2="20"></line><circle cx="20" cy="14" r="4"></circle><path d="M20 18 L10 22 M20 18 L30 22 M20 18 L20 32 M20 32 L15 38 M20 32 L25 38"></path></svg></span>Paralelas (fondos)</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="30" x2="36" y2="30"></line><path d="M10 30 C10 20, 30 20, 30 30"></path><circle cx="14" cy="14" r="4"></circle><circle cx="26" cy="14" r="4"></circle><line x1="18" y1="14" x2="22" y2="14"></line></svg></span>Banco (hip thrust)</span><span class="equip-pill">Banco inclinado</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="15" width="6" height="10" rx="1.5"></rect><rect x="29" y="15" width="6" height="10" rx="1.5"></rect><line x1="11" y1="20" x2="29" y2="20"></line></svg></span>Mancuernas</span><span class="equip-pill">Disco de peso</span><span class="equip-pill">Cinturón de lastre</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="20" r="5"></circle><circle cx="32" cy="20" r="5"></circle><line x1="13" y1="20" x2="27" y2="20"></line></svg></span>Barra olímpica + discos</span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="12"></line><path d="M20 12 C10 16, 30 22, 12 26 C4 28, 30 30, 20 34"></path><line x1="20" y1="34" x2="20" y2="38"></line></svg></span>
+            <span class="equip-text">
+              <b>Banda elástica</b>
+              <span class="equip-loads">Banda violeta · Banda rosa · Banda larga negra</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="10" y1="6" x2="10" y2="20"></line><line x1="30" y1="6" x2="30" y2="20"></line><circle cx="20" cy="14" r="4"></circle><path d="M20 18 L10 22 M20 18 L30 22 M20 18 L20 32 M20 32 L15 38 M20 32 L25 38"></path></svg></span>
+            <span class="equip-text">
+              <b>Paralelas (fondos)</b>
+              <span class="equip-loads">Lastre +5 a +10</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="30" x2="36" y2="30"></line><path d="M10 30 C10 20, 30 20, 30 30"></path><circle cx="14" cy="14" r="4"></circle><circle cx="26" cy="14" r="4"></circle><line x1="18" y1="14" x2="22" y2="14"></line></svg></span>
+            <span class="equip-text">
+              <b>Banco (hip thrust)</b>
+              
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Banco inclinado</b>
+              
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="15" width="6" height="10" rx="1.5"></rect><rect x="29" y="15" width="6" height="10" rx="1.5"></rect><line x1="11" y1="20" x2="29" y2="20"></line></svg></span>
+            <span class="equip-text">
+              <b>Mancuernas</b>
+              <span class="equip-loads">22,5 - 25 c/mano</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Disco de peso</b>
+              <span class="equip-loads">20 - 30</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Cinturón de lastre</b>
+              <span class="equip-loads">Lastre +5 a +10</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="20" r="5"></circle><circle cx="32" cy="20" r="5"></circle><line x1="13" y1="20" x2="27" y2="20"></line></svg></span>
+            <span class="equip-text">
+              <b>Barra olímpica + discos</b>
+              <span class="equip-loads">Barra vacía y 50% · 60 - 62,5 · 25</span>
+            </span>
+          </span>
+        
       </div>
     
       <div class="card block-ref">
@@ -516,7 +583,55 @@
   
       <div class="equipbox">
         <span class="equip-label">Para hoy necesitás:</span>
-        <span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="12"></line><path d="M20 12 C10 16, 30 22, 12 26 C4 28, 30 30, 20 34"></path><line x1="20" y1="34" x2="20" y2="38"></line></svg></span>Banda elástica</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="8" x2="36" y2="8"></line><circle cx="20" cy="18" r="4"></circle><path d="M20 22 L20 32 M20 24 L12 8 M20 24 L28 8 M20 32 L14 38 M20 32 L26 38"></path></svg></span>Barra de dominadas</span><span class="equip-pill">Banco inclinado</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="15" width="6" height="10" rx="1.5"></rect><rect x="29" y="15" width="6" height="10" rx="1.5"></rect><line x1="11" y1="20" x2="29" y2="20"></line></svg></span>Mancuernas</span><span class="equip-pill">Cinturón de lastre</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="20" r="5"></circle><circle cx="32" cy="20" r="5"></circle><line x1="13" y1="20" x2="27" y2="20"></line></svg></span>Barra olímpica + discos</span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="12"></line><path d="M20 12 C10 16, 30 22, 12 26 C4 28, 30 30, 20 34"></path><line x1="20" y1="34" x2="20" y2="38"></line></svg></span>
+            <span class="equip-text">
+              <b>Banda elástica</b>
+              <span class="equip-loads">Peso corporal y 50% · Banda violeta</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="8" x2="36" y2="8"></line><circle cx="20" cy="18" r="4"></circle><path d="M20 22 L20 32 M20 24 L12 8 M20 24 L28 8 M20 32 L14 38 M20 32 L26 38"></path></svg></span>
+            <span class="equip-text">
+              <b>Barra de dominadas</b>
+              <span class="equip-loads">Peso corporal y 50% · Lastre +5 (subir si salen 6 limpias)</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Banco inclinado</b>
+              <span class="equip-loads">22,5</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="15" width="6" height="10" rx="1.5"></rect><rect x="29" y="15" width="6" height="10" rx="1.5"></rect><line x1="11" y1="20" x2="29" y2="20"></line></svg></span>
+            <span class="equip-text">
+              <b>Mancuernas</b>
+              <span class="equip-loads">25 - 27,5 · 15</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Cinturón de lastre</b>
+              <span class="equip-loads">Lastre +5 (subir si salen 6 limpias)</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="20" r="5"></circle><circle cx="32" cy="20" r="5"></circle><line x1="13" y1="20" x2="27" y2="20"></line></svg></span>
+            <span class="equip-text">
+              <b>Barra olímpica + discos</b>
+              <span class="equip-loads">30 - 32,5 · 15 - 17,5</span>
+            </span>
+          </span>
+        
       </div>
     <div class="card rest">CAL — Calentamiento: banda para hombro/escápula + 2 series de aproximación en dominadas y remo · Peso corporal y 50%</div>
       <div class="card">
@@ -822,7 +937,63 @@
   
       <div class="equipbox">
         <span class="equip-label">Para hoy necesitás:</span>
-        <span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="12"></line><path d="M20 12 C10 16, 30 22, 12 26 C4 28, 30 30, 20 34"></path><line x1="20" y1="34" x2="20" y2="38"></line></svg></span>Banda elástica</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="8" x2="36" y2="8"></line><circle cx="20" cy="18" r="4"></circle><path d="M20 22 L20 32 M20 24 L12 8 M20 24 L28 8 M20 32 L14 38 M20 32 L26 38"></path></svg></span>Barra de dominadas</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="30" x2="36" y2="30"></line><path d="M10 30 C10 20, 30 20, 30 30"></path><circle cx="14" cy="14" r="4"></circle><circle cx="26" cy="14" r="4"></circle><line x1="18" y1="14" x2="22" y2="14"></line></svg></span>Banco (hip thrust)</span><span class="equip-pill">Banco inclinado</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="15" width="6" height="10" rx="1.5"></rect><rect x="29" y="15" width="6" height="10" rx="1.5"></rect><line x1="11" y1="20" x2="29" y2="20"></line></svg></span>Mancuernas</span><span class="equip-pill">Disco de peso</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="20" r="5"></circle><circle cx="32" cy="20" r="5"></circle><line x1="13" y1="20" x2="27" y2="20"></line></svg></span>Barra olímpica + discos</span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="12"></line><path d="M20 12 C10 16, 30 22, 12 26 C4 28, 30 30, 20 34"></path><line x1="20" y1="34" x2="20" y2="38"></line></svg></span>
+            <span class="equip-text">
+              <b>Banda elástica</b>
+              <span class="equip-loads">Banda rosa · Banda larga negra</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="8" x2="36" y2="8"></line><circle cx="20" cy="18" r="4"></circle><path d="M20 22 L20 32 M20 24 L12 8 M20 24 L28 8 M20 32 L14 38 M20 32 L26 38"></path></svg></span>
+            <span class="equip-text">
+              <b>Barra de dominadas</b>
+              
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="30" x2="36" y2="30"></line><path d="M10 30 C10 20, 30 20, 30 30"></path><circle cx="14" cy="14" r="4"></circle><circle cx="26" cy="14" r="4"></circle><line x1="18" y1="14" x2="22" y2="14"></line></svg></span>
+            <span class="equip-text">
+              <b>Banco (hip thrust)</b>
+              <span class="equip-loads">Barra vacía y 50%</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Banco inclinado</b>
+              <span class="equip-loads">10 c/mano</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="15" width="6" height="10" rx="1.5"></rect><rect x="29" y="15" width="6" height="10" rx="1.5"></rect><line x1="11" y1="20" x2="29" y2="20"></line></svg></span>
+            <span class="equip-text">
+              <b>Mancuernas</b>
+              <span class="equip-loads">30 c/mano</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Disco de peso</b>
+              <span class="equip-loads">10 - 15</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="20" r="5"></circle><circle cx="32" cy="20" r="5"></circle><line x1="13" y1="20" x2="27" y2="20"></line></svg></span>
+            <span class="equip-text">
+              <b>Barra olímpica + discos</b>
+              <span class="equip-loads">Barra vacía y 50% · 22,5 - 25</span>
+            </span>
+          </span>
+        
       </div>
     
       <div class="card block-ref">
@@ -1110,7 +1281,71 @@
   
       <div class="equipbox">
         <span class="equip-label">Para hoy necesitás:</span>
-        <span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="12"></line><path d="M20 12 C10 16, 30 22, 12 26 C4 28, 30 30, 20 34"></path><line x1="20" y1="34" x2="20" y2="38"></line></svg></span>Banda elástica</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="8" x2="36" y2="8"></line><circle cx="20" cy="18" r="4"></circle><path d="M20 22 L20 32 M20 24 L12 8 M20 24 L28 8 M20 32 L14 38 M20 32 L26 38"></path></svg></span>Barra de dominadas</span><span class="equip-pill">Banco inclinado</span><span class="equip-pill">Banco plano</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="15" width="6" height="10" rx="1.5"></rect><rect x="29" y="15" width="6" height="10" rx="1.5"></rect><line x1="11" y1="20" x2="29" y2="20"></line></svg></span>Mancuernas</span><span class="equip-pill">Disco de peso</span><span class="equip-pill">Cinturón de lastre</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="20" r="5"></circle><circle cx="32" cy="20" r="5"></circle><line x1="13" y1="20" x2="27" y2="20"></line></svg></span>Barra olímpica + discos</span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="12"></line><path d="M20 12 C10 16, 30 22, 12 26 C4 28, 30 30, 20 34"></path><line x1="20" y1="34" x2="20" y2="38"></line></svg></span>
+            <span class="equip-text">
+              <b>Banda elástica</b>
+              <span class="equip-loads">Barra vacía y 50% · Banda violeta</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="8" x2="36" y2="8"></line><circle cx="20" cy="18" r="4"></circle><path d="M20 22 L20 32 M20 24 L12 8 M20 24 L28 8 M20 32 L14 38 M20 32 L26 38"></path></svg></span>
+            <span class="equip-text">
+              <b>Barra de dominadas</b>
+              <span class="equip-loads">Peso corporal</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Banco inclinado</b>
+              <span class="equip-loads">15 - 20 c/mano</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Banco plano</b>
+              <span class="equip-loads">25</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="15" width="6" height="10" rx="1.5"></rect><rect x="29" y="15" width="6" height="10" rx="1.5"></rect><line x1="11" y1="20" x2="29" y2="20"></line></svg></span>
+            <span class="equip-text">
+              <b>Mancuernas</b>
+              <span class="equip-loads">25 c/mano · 25 · 15 - 20 c/mano</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Disco de peso</b>
+              
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Cinturón de lastre</b>
+              <span class="equip-loads">Peso corporal</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="20" r="5"></circle><circle cx="32" cy="20" r="5"></circle><line x1="13" y1="20" x2="27" y2="20"></line></svg></span>
+            <span class="equip-text">
+              <b>Barra olímpica + discos</b>
+              <span class="equip-loads">Barra vacía y 50% · 70 · 30 - 32,5</span>
+            </span>
+          </span>
+        
       </div>
     <div class="card rest">CAL — Calentamiento: banda para hombro + 2 series de aproximación en press inclinado y remo · Barra vacía y 50%</div><div class="group super"><div class="super-tag">Superserie — sin descanso entre ejercicios</div>
       <div class="card">
@@ -1416,7 +1651,63 @@
   
       <div class="equipbox">
         <span class="equip-label">Para hoy necesitás:</span>
-        <span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="12"></line><path d="M20 12 C10 16, 30 22, 12 26 C4 28, 30 30, 20 34"></path><line x1="20" y1="34" x2="20" y2="38"></line></svg></span>Banda elástica</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="10" y1="6" x2="10" y2="20"></line><line x1="30" y1="6" x2="30" y2="20"></line><circle cx="20" cy="14" r="4"></circle><path d="M20 18 L10 22 M20 18 L30 22 M20 18 L20 32 M20 32 L15 38 M20 32 L25 38"></path></svg></span>Paralelas (fondos)</span><span class="equip-pill">Banco plano</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="15" width="6" height="10" rx="1.5"></rect><rect x="29" y="15" width="6" height="10" rx="1.5"></rect><line x1="11" y1="20" x2="29" y2="20"></line></svg></span>Mancuernas</span><span class="equip-pill">Disco de peso</span><span class="equip-pill">Cinturón de lastre</span><span class="equip-pill"><span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="20" r="5"></circle><circle cx="32" cy="20" r="5"></circle><line x1="13" y1="20" x2="27" y2="20"></line></svg></span>Barra olímpica + discos</span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="12"></line><path d="M20 12 C10 16, 30 22, 12 26 C4 28, 30 30, 20 34"></path><line x1="20" y1="34" x2="20" y2="38"></line></svg></span>
+            <span class="equip-text">
+              <b>Banda elástica</b>
+              <span class="equip-loads">Banda y 50% · Banda media</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="10" y1="6" x2="10" y2="20"></line><line x1="30" y1="6" x2="30" y2="20"></line><circle cx="20" cy="14" r="4"></circle><path d="M20 18 L10 22 M20 18 L30 22 M20 18 L20 32 M20 32 L15 38 M20 32 L25 38"></path></svg></span>
+            <span class="equip-text">
+              <b>Paralelas (fondos)</b>
+              <span class="equip-loads">Lastre +5 a +10</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Banco plano</b>
+              <span class="equip-loads">17,5 - 20 c/mano</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="15" width="6" height="10" rx="1.5"></rect><rect x="29" y="15" width="6" height="10" rx="1.5"></rect><line x1="11" y1="20" x2="29" y2="20"></line></svg></span>
+            <span class="equip-text">
+              <b>Mancuernas</b>
+              <span class="equip-loads">17,5 - 20 c/mano · 10 c/mano · 15 c/mano · 12,5 - 15 c/mano</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Disco de peso</b>
+              <span class="equip-loads">10 - 15</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            
+            <span class="equip-text">
+              <b>Cinturón de lastre</b>
+              <span class="equip-loads">Lastre +5 a +10</span>
+            </span>
+          </span>
+        
+          <span class="equip-pill">
+            <span class="equip-icon"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="20" r="5"></circle><circle cx="32" cy="20" r="5"></circle><line x1="13" y1="20" x2="27" y2="20"></line></svg></span>
+            <span class="equip-text">
+              <b>Barra olímpica + discos</b>
+              <span class="equip-loads">30</span>
+            </span>
+          </span>
+        
       </div>
     <div class="card rest">CAL — Calentamiento: banda para manguito + 2 series de aproximación en press de hombros · Banda y 50%</div>
       <div class="card">
@@ -2014,18 +2305,28 @@ const EQUIP_RULES = [
 ];
 
 function getDayEquipment(day){
-  let text = day.rows.map(r => `${r.name} ${r.carga||""}`).join(" ").toLowerCase();
+  const items = [];
+  day.rows.forEach(r => items.push({text:`${r.name} ${r.carga||""}`.toLowerCase(), carga:r.carga}));
   if(ACTIVATION_DAYS.includes(day.key)){
-    text += " " + ACTIVATION.map(a=>`${a.ej} ${a.carga}`).join(" ").toLowerCase();
+    ACTIVATION.forEach(a => items.push({text:`${a.ej} ${a.carga}`.toLowerCase(), carga:a.carga}));
   }
   const core = CORE[day.key];
-  if(core) text += " " + core.ex.map(e=>e.n).join(" ").toLowerCase();
+  if(core) core.ex.forEach(e => items.push({text: e.n.toLowerCase(), carga:null}));
 
-  const found = [];
+  const map = {}; // label -> {icon, cargas:Set}
   EQUIP_RULES.forEach(rule=>{
-    if(rule.test(text) && !found.some(f=>f.label===rule.label)) found.push(rule);
+    items.forEach(it=>{
+      if(rule.test(it.text)){
+        if(!map[rule.label]) map[rule.label] = {icon:rule.icon, cargas:new Set()};
+        if(it.carga && it.carga.trim() && it.carga !== "-") map[rule.label].cargas.add(it.carga.trim());
+      }
+    });
   });
-  return found;
+
+  // conserva el orden de EQUIP_RULES
+  return EQUIP_RULES
+    .map(rule => map[rule.label] ? {label:rule.label, icon:rule.icon, cargas:[...map[rule.label].cargas]} : null)
+    .filter(Boolean);
 }
 
 let store = {}; // in-memory mirror of window.storage, key: `reg:{day}:{rowIndex}` -> [s1,s2,s3,s4]
@@ -2059,6 +2360,7 @@ async function saveCell(dayKey, rowIndex, values){
 
 function buildTabs(){
   const tabs = document.getElementById("tabs");
+  tabs.innerHTML = ""; // por si el contenedor ya traía pestañas (ej. página guardada del navegador)
   DAYS.forEach((d,i)=>{
     const btn = document.createElement("div");
     btn.className = "tab" + (i===0?" active":"");
@@ -2096,7 +2398,15 @@ function renderDayPanel(day){
     html += `
       <div class="equipbox">
         <span class="equip-label">Para hoy necesitás:</span>
-        ${equip.map(e=>`<span class="equip-pill">${e.icon ? `<span class="equip-icon">${ICONS[e.icon]}</span>` : ""}${e.label}</span>`).join("")}
+        ${equip.map(e=>`
+          <span class="equip-pill">
+            ${e.icon ? `<span class="equip-icon">${ICONS[e.icon]}</span>` : ""}
+            <span class="equip-text">
+              <b>${e.label}</b>
+              ${e.cargas.length ? `<span class="equip-loads">${e.cargas.join(" · ")}</span>` : ""}
+            </span>
+          </span>
+        `).join("")}
       </div>
     `;
   }
@@ -2337,7 +2647,9 @@ function renderResumen(){
 
 async function init(){
   const marker = document.getElementById('buildmarker');
-  if(marker) marker.textContent = 'Versión 2026-08-24-v3 — si ves este texto, el script arrancó bien.';
+  if(marker) marker.textContent = 'Versión 2026-08-24-v4 — si ves este texto, el script arrancó bien.';
+  const panelsEl = document.getElementById('panels');
+  if(panelsEl) panelsEl.innerHTML = ""; // limpia contenido pre-existente (ej. página guardada del navegador)
   buildTabs();
   DAYS.forEach(renderDayPanel);
   renderResumen();
